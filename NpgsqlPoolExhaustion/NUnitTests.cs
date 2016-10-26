@@ -16,15 +16,12 @@ namespace NpgsqlPoolExhaustion
         public void Initialise()
         {
             _tableName = "xxx";
-            NpgsqlConnection.ClearAllPools();
-            ThreadPool.SetMinThreads(100, 100);
         }
 
         [TearDown]
         public async Task Destroy()
         {
             var db = new PostgreSqlDatabase(GetConnectionStringForDatabase("rebus2_test"));
-            NpgsqlConnection.ClearAllPools();
             await db.DropTable(_tableName);
         }
 
