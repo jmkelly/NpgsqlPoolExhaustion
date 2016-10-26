@@ -30,7 +30,7 @@ namespace NpgsqlPoolExhaustion
         //[TestCase(10000,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test;Maximum Pool Size=100000")]
         //[TestCase(98,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test;Maximum Pool Size=1000; Connection Idle Lifetime=1; Connection Pruning Interval 0.5;")]
         [TestCase(95,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=1;")]
-        [TestCase(96,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=1;")]
+        [TestCase(101,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=1;")]
         public async Task SaveABunchOfData(int messageCount, string connectionString)
         {
 
