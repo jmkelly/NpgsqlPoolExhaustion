@@ -26,15 +26,18 @@ namespace NpgsqlPoolExhaustion
         }
 
         //[TestCase(98,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test")]
-        //[TestCase(98,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test;Pooling=false")]
+        //[TestCase(99,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test;")]
         //[TestCase(10000,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test;Maximum Pool Size=100000")]
         //[TestCase(98,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test;Maximum Pool Size=1000; Connection Idle Lifetime=1; Connection Pruning Interval 0.5;")]
-        [TestCase(95,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=1;")]
-        [TestCase(101,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=1;")]
+ //       [TestCase(200000,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=30;")]
+//        [TestCase(101,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=1;")]
+        [TestCase(200000,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=30;")]
+        [TestCase(200001,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test; maximum pool size=30;")]
+        [TestCase(500,"server=localhost;port=5433;database=rebus2_test;user id=test;password=test;")]
         public async Task SaveABunchOfData(int messageCount, string connectionString)
         {
 
-            var db = new PostgreSqlDatabase(GetConnectionStringForDatabase("rebus2_test"));
+            var db = new PostgreSqlDatabase(connectionString);
             await db.CreateTestTable(_tableName);
 
             await Task.WhenAll(Enumerable.Range(0, messageCount)
